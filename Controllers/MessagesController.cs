@@ -1,12 +1,27 @@
-﻿using System.Threading.Tasks;
-using System.Web.Http;
-
-using Microsoft.Bot.Connector;
-using Microsoft.Bot.Builder.Dialogs;
-using System.Web.Http.Description;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.Description;
+using Microsoft.Bot.Connector;
+using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
+using AppicationBot.Ver._2.Dialogs;
+using AppicationBot.Ver._2.Services;
+using AppicationBot.Ver._2.Models;
+using System.Text;
+using AppicationBot.Ver._2.Forms;
+using Microsoft.Bot.Builder.FormFlow;
+using System.Collections.Generic;
+using Microsoft.Rest;
+using Face_RecognitionLibrary;
+using System.IO;
+using OTempus.Library.Class;
+using System.Net.Http.Headers;
 
-namespace Microsoft.Bot.Sample.SimpleEchoBot
+namespace AppicationBot.Ver._2
 {
     [BotAuthentication]
     public class MessagesController : ApiController
@@ -179,7 +194,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     }
                     catch (Exception ex)
                     {
-
+                       
                         reply.Text = $"Error  " + ex.Message.ToString() + "...";
                         await client.Conversations.ReplyToActivityAsync(reply);
                     }
@@ -211,24 +226,22 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                         }
                         catch (Exception ex)
                         {
-                            reply.Text = $"Error:  " + ex.Message.ToString();
+                            reply.Text = $"Error:  "+ ex.Message.ToString();
                             await client.Conversations.ReplyToActivityAsync(reply);
                         }
 
                         /* Create the userstate */
 
                         try
-                        { customerId = customer.Id; }
-                        catch (Exception) { }
+                        {customerId= customer.Id;}catch (Exception){}
                         customerState.CustomerId = customer.Id;
                         customerState.FirstName = customer.FirstName;
                         customerState.PhoneNumber = customer.TelNumber1;
                         customerState.Sex = Convert.ToInt32(customer.Sex);
                         customerState.PersonaId = customer.PersonalId;
                         userData.SetProperty<ACFCustomer>("customerState", customerState);
-                        if (!string.IsNullOrEmpty(customer.FirstName))
-                        {
-                            reply.Text = $"Welcome  " + customer.FirstName + " " + customer.LastName + "...";
+                        if (!string.IsNullOrEmpty(customer.FirstName)) { 
+                        reply.Text = $"Welcome  " + customer.FirstName + " "+customer.LastName+"...";
                             await client.Conversations.ReplyToActivityAsync(reply);
                         }
 
@@ -271,7 +284,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     }
                     bool session = userData.GetProperty<bool>("SignIn");
 
-                    if ((objectId.Contains("not found") || String.IsNullOrEmpty(objectId) || customerId == 0) && idImageSaveIdProperty > 0 && String.IsNullOrEmpty(customerName))
+                    if ((objectId.Contains("not found") || String.IsNullOrEmpty(objectId)|| customerId == 0) && idImageSaveIdProperty > 0 && String.IsNullOrEmpty(customerName) )
                     {
                         await Conversation.SendAsync(activity, () => new RegisterUserDialog(idImageSaved, name));
 
@@ -283,7 +296,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                     }
                     else if (session)
                     {
-                        if (!objectId.Contains("not found") && !String.IsNullOrEmpty(customerName))
+                        if (!objectId.Contains("not found") && !String.IsNullOrEmpty(customerName) )
                         {
                             await Conversation.SendAsync(activity, () => new RootDialog());
                         }

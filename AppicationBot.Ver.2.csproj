@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project=".\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('.\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project=".\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props" Condition="Exists('.\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props')" />
@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleEchoBot</RootNamespace>
-    <AssemblyName>SimpleEchoBot</AssemblyName>
+    <RootNamespace>AppicationBot.Ver._2</RootNamespace>
+    <AssemblyName>AppicationBot.Ver._2</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -54,6 +54,10 @@
       <HintPath>packages\Chronic.Signed.0.3.2\lib\net40\Chronic.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Face RecognitionLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual Studio 2015\Projects\AppicationBot.Ver.2\AppicationBot.Ver.2\Dlls\Face RecognitionLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bot.Builder, Version=3.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bot.Builder.3.9.0.0\lib\net46\Microsoft.Bot.Builder.dll</HintPath>
       <Private>True</Private>
@@ -86,6 +90,10 @@
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>.\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="OTempus.Library, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual Studio 2015\Projects\AppicationBot.Ver.2\AppicationBot.Ver.2\Dlls\OTempus.Library.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -122,23 +130,141 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebAppoinmentsClientLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual Studio 2015\Projects\AppicationBot.Ver.2\AppicationBot.Ver.2\Dlls\WebAppoinmentsClientLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\ar\Microsoft.Bot.Builder.resources %282%29.dll" />
+    <Content Include="bin\ar\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\Autofac.dll" />
+    <Content Include="bin\Autofac.xml" />
+    <Content Include="bin\Bot Application1.dll" />
+    <Content Include="bin\Bot Application1.pdb" />
+    <Content Include="bin\Chronic.dll" />
+    <Content Include="bin\cs\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\de-dE\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\en\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\es\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\Face RecognitionLibrary.dll" />
+    <Content Include="bin\fa\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\fr\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\it\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\ja\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\LinqToTwitter.AspNet.dll" />
+    <Content Include="bin\LinqToTwitter.net.dll" />
+    <Content Include="bin\Microsoft.Azure.AppService.ApiApps.Service.dll" />
+    <Content Include="bin\Microsoft.Bot.Builder.Autofac.dll" />
+    <Content Include="bin\Microsoft.Bot.Builder.Autofac.xml" />
+    <Content Include="bin\Microsoft.Bot.Builder.dll" />
+    <Content Include="bin\Microsoft.Bot.Builder.xml" />
+    <Content Include="bin\Microsoft.Bot.Connector.dll" />
+    <Content Include="bin\Microsoft.Bot.Connector.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.IdentityModel.Protocol.Extensions.dll" />
+    <Content Include="bin\Microsoft.IdentityModel.Protocol.Extensions.xml" />
+    <Content Include="bin\Microsoft.Rest.ClientRuntime.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Microsoft.WindowsAzure.Configuration.dll" />
+    <Content Include="bin\Microsoft.WindowsAzure.Configuration.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\nl\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\OTempus.Library.dll" />
+    <Content Include="bin\pt-BR\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\ru\Microsoft.Bot.Builder.resources.dll" />
+    <Content Include="bin\SimpleEchoBot.dll" />
+    <Content Include="bin\SimpleEchoBot.pdb" />
+    <Content Include="bin\Swashbuckle.Core.dll" />
+    <Content Include="bin\System.IdentityModel.Tokens.Jwt.dll" />
+    <Content Include="bin\System.IdentityModel.Tokens.Jwt.xml" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Reactive.Core.dll" />
+    <Content Include="bin\System.Reactive.Interfaces.dll" />
+    <Content Include="bin\System.Reactive.Linq.dll" />
+    <Content Include="bin\System.Reactive.PlatformServices.dll" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\WebActivatorEx.dll" />
+    <Content Include="bin\WebAppoinmentsClientLibrary.dll" />
+    <Content Include="bin\zh-hans\Microsoft.Bot.Builder.resources.dll" />
     <Content Include="default.htm" />
+    <Content Include="Dlls\Face RecognitionLibrary.dll" />
+    <Content Include="Dlls\OTempus.Library.dll" />
+    <Content Include="Dlls\WebAppoinmentsClientLibrary.dll" />
     <Content Include="Global.asax" />
+    <Content Include="Services\ServicesDescription.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Dialogs\EchoDialog.cs" />
+    <Compile Include="Dialogs\BookDialog.cs" />
+    <Compile Include="Dialogs\CancelDialog.cs" />
+    <Compile Include="Dialogs\RegisterUserDialog.cs" />
+    <Compile Include="Dialogs\RescheduleDialog.cs" />
+    <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Dialogs\StatusDialog.cs" />
+    <Compile Include="Forms\AppoinmentForm.cs" />
+    <Compile Include="Forms\AuthenticationForm.cs" />
+    <Compile Include="Forms\BookForm.cs" />
+    <Compile Include="Forms\CancelForm.cs" />
+    <Compile Include="Forms\CustomerForm.cs" />
+    <Compile Include="Forms\EnqueueForm.cs" />
+    <Compile Include="Forms\RescheduleForm.cs" />
+    <Compile Include="Forms\RescheduleFormApp.cs" />
+    <Compile Include="Forms\SaveCustomerForm.cs" />
+    <Compile Include="Forms\StatusForm.cs" />
+    <Compile Include="Forms\StatusFormApp.cs" />
+    <Compile Include="Models\ACFAppointment.cs" />
+    <Compile Include="Models\ACFCustomer.cs" />
+    <Compile Include="Models\FaceRecognitionModel.cs" />
+    <Compile Include="Models\ObjectIdModel.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Properties\App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\MyCustomType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AppoinmentService.cs" />
+    <Compile Include="Services\FRService.cs" />
+    <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="bin\Bot Application1.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\SimpleEchoBot.dll.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -146,6 +272,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
