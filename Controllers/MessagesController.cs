@@ -50,7 +50,7 @@ namespace AppicationBot.Ver._2
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-        private async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             ObjectResultRecognition result = new ObjectResultRecognition();
             string _BaseUrl = "http://migueliis.hosted.acftechnologies.com/RestServiceFRBotAppointment";
@@ -322,7 +322,7 @@ namespace AppicationBot.Ver._2
             return response;
         }
 
-        private async Task<IEnumerable<byte[]>> GetAttachmentsAsync(Activity activity)
+        public async Task<IEnumerable<byte[]>> GetAttachmentsAsync(Activity activity)
         {
             var attachments = activity?.Attachments?
            .Where(attachment => attachment.ContentUrl != null)
