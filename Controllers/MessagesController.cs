@@ -28,8 +28,8 @@ namespace AppicationBot.Ver._2
     {
         private static string serviceUrl;
         bool signIn;
-
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        [ResponseType(typeof(void))]
+        public virtual async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
 
             //var client = message.From.ChannelId == "emulator" ? new ConnectorClient(new Uri("http://localhost:9000"), new ConnectorClientCredentials()) : new ConnectorClient();
