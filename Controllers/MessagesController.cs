@@ -50,7 +50,7 @@ namespace AppicationBot.Ver._2
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        private async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             ObjectResultRecognition result = new ObjectResultRecognition();
             string _BaseUrl = "http://migueliis.hosted.acftechnologies.com/RestServiceFRBotAppointment";
