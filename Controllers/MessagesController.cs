@@ -43,7 +43,7 @@ namespace AppicationBot.Ver._2
 
             });
 
-            return await Conversation.SendAsync(message, () => new EchoDialog());
+            return await Conversation.SendAsync(message, () => new RootDialog());
         }*/
 
         /// <summary>
