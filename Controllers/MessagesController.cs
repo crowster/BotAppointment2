@@ -29,28 +29,31 @@ namespace AppicationBot.Ver._2
         private static string serviceUrl;
         bool signIn;
 
-        /*public async Task<Message> Post([FromBody]Message message)
+        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            Task.Delay(2000).ContinueWith(async (t) =>
-            {
-                var client = message.From.ChannelId == "emulator" ? new ConnectorClient(new Uri("http://localhost:9000"), new ConnectorClientCredentials()) : new ConnectorClient();
-                var clearMsg = message.CreateReplyMessage();
-                clearMsg.Text = $"Reseting everything for conversation: {message.ConversationId}";
-                clearMsg.BotUserData = new object { };
-                clearMsg.BotConversationData = new object { };
-                clearMsg.BotPerUserInConversationData = new object { };
-                await client.Messages.SendMessageAsync(clearMsg);
 
-            });
+            //var client = message.From.ChannelId == "emulator" ? new ConnectorClient(new Uri("http://localhost:9000"), new ConnectorClientCredentials()) : new ConnectorClient();
+            //var clearMsg = message.CreateReplyMessage();
+            //clearMsg.Text = $"Reseting everything for conversation: {message.ConversationId}";
+            // clearMsg.BotUserData = new object { };
+            //clearMsg.BotConversationData = new object { };
+            //clearMsg.BotPerUserInConversationData = new object { };
+            var client = new ConnectorClient(new Uri(activity.ServiceUrl), new MicrosoftAppCredentials());
+            var reply = activity.CreateReply();
+            reply.Text = $"Your session has been restarted...";
+            await client.Conversations.ReplyToActivityAsync(reply);
 
-            return await Conversation.SendAsync(message, () => new RootDialog());
-        }*/
+            await Conversation.SendAsync(activity, () => new RootDialog());
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
 
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        /*public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             ObjectResultRecognition result = new ObjectResultRecognition();
             string _BaseUrl = "http://migueliis.hosted.acftechnologies.com/RestServiceFRBotAppointment";
@@ -81,7 +84,7 @@ namespace AppicationBot.Ver._2
                  reply.Text = $"Your session has been restarted...";
                  await client.Conversations.ReplyToActivityAsync(reply);
 
-             });*/
+             });
 
 
             if (activity.Type == ActivityTypes.Message)
@@ -228,99 +231,99 @@ namespace AppicationBot.Ver._2
                         {
                             reply.Text = $"Error:  "+ ex.Message.ToString();
                             await client.Conversations.ReplyToActivityAsync(reply);
-                        }
+                        }*/
 
-                        /* Create the userstate */
+        /* Create the userstate */
 
-                        try
-                        {customerId= customer.Id;}catch (Exception){}
-                        customerState.CustomerId = customer.Id;
-                        customerState.FirstName = customer.FirstName;
-                        customerState.PhoneNumber = customer.TelNumber1;
-                        customerState.Sex = Convert.ToInt32(customer.Sex);
-                        customerState.PersonaId = customer.PersonalId;
-                        userData.SetProperty<ACFCustomer>("customerState", customerState);
-                        if (!string.IsNullOrEmpty(customer.FirstName)) { 
-                        reply.Text = $"Welcome  " + customer.FirstName + " "+customer.LastName+"...";
-                            await client.Conversations.ReplyToActivityAsync(reply);
-                        }
+        /* try
+         {customerId= customer.Id;}catch (Exception){}
+         customerState.CustomerId = customer.Id;
+         customerState.FirstName = customer.FirstName;
+         customerState.PhoneNumber = customer.TelNumber1;
+         customerState.Sex = Convert.ToInt32(customer.Sex);
+         customerState.PersonaId = customer.PersonalId;
+         userData.SetProperty<ACFCustomer>("customerState", customerState);
+         if (!string.IsNullOrEmpty(customer.FirstName)) { 
+         reply.Text = $"Welcome  " + customer.FirstName + " "+customer.LastName+"...";
+             await client.Conversations.ReplyToActivityAsync(reply);
+         }
 
-                    }
-                    else
-                    {
-                        /* var client = new ConnectorClient(new Uri(activity.ServiceUrl), new MicrosoftAppCredentials());
-                         var reply = activity.CreateReply();
-                         reply.Text = $"Your photo is not registered yet, Starting the process for create an user with this photo ";
-                         await client.Conversations.ReplyToActivityAsync(reply);*/
-                    }
-                }
+     }
+     else
+     {*/
+        /* var client = new ConnectorClient(new Uri(activity.ServiceUrl), new MicrosoftAppCredentials());
+         var reply = activity.CreateReply();
+         reply.Text = $"Your photo is not registered yet, Starting the process for create an user with this photo ";
+         await client.Conversations.ReplyToActivityAsync(reply);*/
+        /* }
+     }
 
-                MyCustomType myCustomData = new MyCustomType();
-                myCustomData.Id = 2;
-                try
-                {
-                    //GEt the actual id ImageSaveId
-                    int idImageSaveIdProperty = 0;
-                    idImageSaveIdProperty = userData.GetProperty<int>("idImageSaveId");
-                    userData.SetProperty<MyCustomType>("UserData", myCustomData);
-                    await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
-                    ACFCustomer currentACFCustomer = new ACFCustomer();
-                    string customerName = "";
-                    string firstName = "";
-                    try
-                    {
-                        firstName = userData.GetProperty<ACFCustomer>("customerState").FirstName;
-                    }
-                    catch (Exception)
-                    {
+     MyCustomType myCustomData = new MyCustomType();
+     myCustomData.Id = 2;
+     try
+     {
+         //GEt the actual id ImageSaveId
+         int idImageSaveIdProperty = 0;
+         idImageSaveIdProperty = userData.GetProperty<int>("idImageSaveId");
+         userData.SetProperty<MyCustomType>("UserData", myCustomData);
+         await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
+         ACFCustomer currentACFCustomer = new ACFCustomer();
+         string customerName = "";
+         string firstName = "";
+         try
+         {
+             firstName = userData.GetProperty<ACFCustomer>("customerState").FirstName;
+         }
+         catch (Exception)
+         {
 
-                    }
+         }
 
-                    if (!string.IsNullOrEmpty(firstName))
-                    {
-                        currentACFCustomer = userData.GetProperty<ACFCustomer>("customerState");
+         if (!string.IsNullOrEmpty(firstName))
+         {
+             currentACFCustomer = userData.GetProperty<ACFCustomer>("customerState");
 
-                        customerName = currentACFCustomer.FirstName;
-                    }
-                    bool session = userData.GetProperty<bool>("SignIn");
+             customerName = currentACFCustomer.FirstName;
+         }
+         bool session = userData.GetProperty<bool>("SignIn");
 
-                    if ((objectId.Contains("not found") || String.IsNullOrEmpty(objectId)|| customerId == 0) && idImageSaveIdProperty > 0 && String.IsNullOrEmpty(customerName) )
-                    {
-                        await Conversation.SendAsync(activity, () => new RegisterUserDialog(idImageSaved, name));
+         if ((objectId.Contains("not found") || String.IsNullOrEmpty(objectId)|| customerId == 0) && idImageSaveIdProperty > 0 && String.IsNullOrEmpty(customerName) )
+         {
+             await Conversation.SendAsync(activity, () => new RegisterUserDialog(idImageSaved, name));
 
-                    }
-                    else if (!session && String.IsNullOrEmpty(objectId) && !objectId.ToLower().Contains("not found") && idImageSaveIdProperty == 0)
-                    {
-                        reply.Text = $"Please add your photo to identify yourself.. ";
-                        await client.Conversations.ReplyToActivityAsync(reply);
-                    }
-                    else if (session)
-                    {
-                        if (!objectId.Contains("not found") && !String.IsNullOrEmpty(customerName) )
-                        {
-                            await Conversation.SendAsync(activity, () => new RootDialog());
-                        }
-                    }
-                    /* else
-                     {
-                         var client = new ConnectorClient(new Uri(activity.ServiceUrl), new MicrosoftAppCredentials());
-                         var reply = activity.CreateReply();
-                         reply.Text = $"please add your photo, for sign in";
-                         await client.Conversations.ReplyToActivityAsync(reply);
-                     }*/
-                }
-                catch (HttpOperationException err)
-                {
-                    // handle error with HTTP status code 412 Precondition Failed
-                }
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
-        }
+         }
+         else if (!session && String.IsNullOrEmpty(objectId) && !objectId.ToLower().Contains("not found") && idImageSaveIdProperty == 0)
+         {
+             reply.Text = $"Please add your photo to identify yourself.. ";
+             await client.Conversations.ReplyToActivityAsync(reply);
+         }
+         else if (session)
+         {
+             if (!objectId.Contains("not found") && !String.IsNullOrEmpty(customerName) )
+             {
+                 await Conversation.SendAsync(activity, () => new RootDialog());
+             }
+         }*/
+        /* else
+         {
+             var client = new ConnectorClient(new Uri(activity.ServiceUrl), new MicrosoftAppCredentials());
+             var reply = activity.CreateReply();
+             reply.Text = $"please add your photo, for sign in";
+             await client.Conversations.ReplyToActivityAsync(reply);
+         }*/
+        /* }
+         catch (HttpOperationException err)
+         {
+             // handle error with HTTP status code 412 Precondition Failed
+         }
+     }
+     else
+     {
+         HandleSystemMessage(activity);
+     }
+     var response = Request.CreateResponse(HttpStatusCode.OK);
+     return response;
+ }*/
 
         public async Task<IEnumerable<byte[]>> GetAttachmentsAsync(Activity activity)
         {
