@@ -325,7 +325,7 @@ namespace AppicationBot.Ver._2
      return response;
  }*/
 
-        public async Task<IEnumerable<byte[]>> GetAttachmentsAsync(Activity activity)
+        private async Task<IEnumerable<byte[]>> GetAttachmentsAsync(Activity activity)
         {
             var attachments = activity?.Attachments?
            .Where(attachment => attachment.ContentUrl != null)
